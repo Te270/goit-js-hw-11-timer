@@ -22,20 +22,19 @@ class CountdownTimer {
       this.refs.fieldMins.textContent = mins;
       this.refs.fieldSecs.textContent = secs;
     });
+    function getTimeComponents(time) {
+      console.log(time);
+      let days = Math.floor(time / (1000 * 60 * 60 * 24));
+      let hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      hours = String(hours).padStart(2, '0');
+      let mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+      mins = String(mins).padStart(2, '0');
+      let secs = Math.floor((time % (1000 * 60)) / 1000);
+      secs = String(secs).padStart(2, '0');
+
+      return { days, hours, mins, secs };
+    }
   };
-}
-
-function getTimeComponents(time) {
-  console.log(time);
-  let days = Math.floor(time / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  hours = String(hours).padStart(2, '0');
-  let mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-  mins = String(mins).padStart(2, '0');
-  let secs = Math.floor((time % (1000 * 60)) / 1000);
-  secs = String(secs).padStart(2, '0');
-
-  return { days, hours, mins, secs };
 }
 
 const timer1 = new CountdownTimer({
